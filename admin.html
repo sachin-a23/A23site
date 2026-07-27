@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — A23SITE</title>
+<style>
+  :root{
+    --bg: #07090e; --bg-card: #0d131f; --border: #1a2333; --text: #f0f4f8; --muted: #829ab1; --accent: #ff3366; --accent-dim: #551122;
+    --mono: 'JetBrains Mono', monospace; --sans: 'Inter', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:var(--sans); line-height:1.6;}
+  a{color:inherit; text-decoration:none;}
+  header{position:sticky; top:0; z-index:100; background:rgba(7,9,14,0.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); padding:16px 24px; display:flex; justify-content:space-between; align-items:center;}
+  .logo{font-family:var(--mono); font-weight:700; font-size:18px; color:var(--accent); display:flex; align-items:center; gap:8px;}
+  .logo span{width:8px; height:8px; background:var(--accent); border-radius:50%;}
+  nav{display:flex; gap:18px; font-family:var(--mono); font-size:13px; color:var(--muted);}
+  nav a:hover{color:var(--accent);}
+  .container{max-width:900px; margin:0 auto; padding:40px 24px;}
+  h1{font-size:24px; font-weight:800; margin-bottom:10px; font-family:var(--mono);}
+  p{color:var(--muted); margin-bottom:24px; font-size:14px;}
+  .panel{background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:20px; font-family:var(--mono); font-size:13px; margin-bottom:20px;}
+  .panel h3{color:var(--accent); margin-bottom:10px; font-size:15px;}
+  .market-tags{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;}
+  .tag{background:#121a2b; border:1px solid var(--border); padding:4px 10px; border-radius:6px; font-size:11px; color:var(--muted);}
+  textarea{width:100%; height:150px; background:#040609; border:1px solid var(--border); color:var(--text); padding:12px; border-radius:8px; font-family:var(--mono); margin-top:8px; outline:none;}
+  textarea:focus{border-color:var(--accent);}
+</style>
+</head>
+<body>
+  <header>
+    <div class="logo"><span></span> A23SITE ADMIN</div>
+    <nav>
+      <a href="index.html">← Back to Portal</a>
+    </nav>
+  </header>
+  <div class="container">
+    <h1>Private Control Panel</h1>
+    <p>Ye section poori tarah se private hai. Aap yahan apna sara market record manage kar sakte hain.</p>
+    
+    <div class="panel">
+      <h3>📈 Market & Kalyan Tracker Data</h3>
+      <div class="market-tags">
+        <span class="tag">SRIDEVI</span>
+        <span class="tag">TIMEBAZAAR</span>
+        <span class="tag">MILAN</span>
+        <span class="tag">KALYAN</span>
+        <span class="tag">OTHER</span>
+      </div>
+      <div>Apna private analysis aur track records yahan likhein:</div>
+      <textarea placeholder="Enter private market data, numbers, and notes here..."></textarea>
+    </div>
+  </div>
+</body>
+</html>
