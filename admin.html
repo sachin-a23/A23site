@@ -41,10 +41,10 @@
   .market-textarea{
     width:100%; height:180px; background:var(--bg-input); border:1px solid var(--border);
     border-radius:12px; padding:15px; color:var(--text); font-family:var(--mono); font-size:13.5px;
-    outline:none; resize:vertical; margin-bottom:15px;
+    outline:none; resize:vertical; margin-bottom:15px; transition:0.3s;
   }
   .market-textarea:focus{border-color:var(--accent);}
-  .market-textarea:disabled{opacity: 0.7; cursor: not-allowed;}
+  .market-textarea:read-only {opacity: 0.8; border-color: var(--border); background: #0a0e17; cursor: default;}
 
   .action-buttons {display: flex; gap: 12px; flex-wrap: wrap;}
   .btn{
@@ -56,8 +56,18 @@
   
   .btn-secondary { background: var(--bg-input); color: var(--text); border: 1px solid var(--border); }
   .btn-secondary:hover { border-color: var(--accent); color: var(--accent); box-shadow: none; }
+  
+  .btn-danger { background: #ff3366; color: #fff; }
+  .btn-danger:hover { box-shadow: 0 0 12px rgba(255,51,102,0.4); }
 
   .status-msg{font-family:var(--mono); font-size:12px; color:var(--accent); margin-top:10px;}
+
+  /* Safety Warning Box */
+  .warning-banner {
+    background: rgba(255, 170, 0, 0.1); border: 1px solid rgba(255, 170, 0, 0.3);
+    padding: 10px 14px; border-radius: 8px; font-size: 12px; color: #ffaa00;
+    font-family: var(--mono); margin-bottom: 15px; display: flex; align-items: center; gap: 8px;
+  }
 
   footer{
     border-top:1px solid var(--border); padding:30px 24px; text-align:center; color:var(--muted); font-size:12.5px; font-family:var(--mono);
@@ -89,7 +99,7 @@
           📈 Market & Kalyan Tracker Data
         </div>
 
-        <!-- 1. Market Chun Sake (Select Market Buttons) -->
+        <!-- Market Selection Buttons -->
         <div class="market-tags">
           <button class="tag-btn active" onclick="switchMarket('sridevi', event)">SRIDEVI</button>
           <button class="tag-btn" onclick="switchMarket('timebazaar', event)">TIMEBAZAAR</button>
@@ -98,18 +108,25 @@
           <button class="tag-btn" onclick="switchMarket('other', event)">OTHER</button>
         </div>
 
+        <!-- Safety Notice Banner -->
+        <div id="safetyBanner" class="warning-banner" style="display:none;">
+          ⚠️ <b>Edit Mode Active:</b> File unlocked hai. Badlav karne ke baad 'Save' zaroor karein!
+        </div>
+
         <div style="font-size:13px; color:var(--muted); margin-bottom:8px;" id="currentMarketLabel">
           Apna private analysis aur track records yahan likhein (SRIDEVI):
         </div>
 
-        <textarea id="marketDataInput" class="market-textarea" placeholder="Enter private market data, numbers, and notes here..." disabled></textarea>
+        <!-- Textarea with ReadOnly protection by default -->
+        <textarea id="marketDataInput" class="market-textarea" placeholder="Enter private market data, numbers, and notes here..." readonly></textarea>
         
-        <!-- 2. Save, Edit, Copy Buttons Bar -->
+        <!-- Action Buttons -->
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
           <div class="action-buttons">
-            <button id="editBtn" class="btn btn-secondary" onclick="enableEdit()">✏️ Edit</button>
-            <button id="saveBtn" class="btn" onclick="saveMarketData()" style="display:none;">💾 Save Record</button>
-            <button class="btn btn-secondary" onclick="copyData()">📋 Copy</button>
+            <button id="lockUnlockBtn" class="btn btn-secondary" onclick="toggleEditMode()">🔒 Unlock to Edit</button>
+            <button id="saveBtn" class="btn" onclick="saveMarketData()" style="display:none;">💾 Save Changes</button>
+            <button class="btn btn-secondary" onclick="copyData()">📋 Copy Data</button>
+            <button class="btn btn-secondary" onclick="exportAppData()" title="App ke liye JSON format download karein">📦 Export for App</button>
           </div>
           <div id="saveStatus" class="status-msg"></div>
         </div>
@@ -128,6 +145,7 @@
 
   <script>
     let activeMarket = 'sridevi';
+    let isEditing = false;
 
     function switchMarket(market, event) {
       activeMarket = market;
@@ -142,21 +160,46 @@
       let textarea = document.getElementById('marketDataInput');
       textarea.value = savedData;
       
-      // Switch back to view/locked mode on market switch
-      textarea.setAttribute('disabled', 'true');
-      document.getElementById('editBtn').style.display = 'inline-flex';
+      // Reset edit lock when switching market
+      isEditing = false;
+      textarea.setAttribute('readonly', true);
+      document.getElementById('lockUnlockBtn').innerHTML = '🔒 Unlock to Edit';
+      document.getElementById('lockUnlockBtn').className = 'btn btn-secondary';
       document.getElementById('saveBtn').style.display = 'none';
+      document.getElementById('safetyBanner').style.display = 'none';
       document.getElementById('saveStatus').innerText = '';
     }
 
-    function enableEdit() {
+    function toggleEditMode() {
       let textarea = document.getElementById('marketDataInput');
-      textarea.removeAttribute('disabled');
-      textarea.focus();
-      
-      document.getElementById('editBtn').style.display = 'none';
-      document.getElementById('saveBtn').style.display = 'inline-flex';
-      document.getElementById('saveStatus').innerText = '⚡ Editing enabled...';
+      let btn = document.getElementById('lockUnlockBtn');
+      let saveBtn = document.getElementById('saveBtn');
+      let banner = document.getElementById('safetyBanner');
+
+      if (!isEditing) {
+        // Unlock for editing
+        isEditing = true;
+        textarea.removeAttribute('readonly');
+        textarea.focus();
+        btn.innerHTML = '❌ Lock / Cancel';
+        btn.className = 'btn btn-danger';
+        saveBtn.style.display = 'inline-flex';
+        banner.style.display = 'flex';
+        document.getElementById('saveStatus').innerText = '⚡ Mode: Editing Enabled';
+      } else {
+        // Lock back without saving changes
+        isEditing = false;
+        textarea.setAttribute('readonly', true);
+        btn.innerHTML = '🔒 Unlock to Edit';
+        btn.className = 'btn btn-secondary';
+        saveBtn.style.display = 'none';
+        banner.style.display = 'none';
+        
+        // Reload original saved data
+        textarea.value = localStorage.getItem('a23_market_' + activeMarket) || '';
+        document.getElementById('saveStatus').innerText = '🔒 Locked securely.';
+        setTimeout(() => { document.getElementById('saveStatus').innerText = ''; }, 2000);
+      }
     }
 
     function saveMarketData() {
@@ -165,24 +208,44 @@
       
       localStorage.setItem('a23_market_' + activeMarket, data);
       
-      textarea.setAttribute('disabled', 'true');
-      document.getElementById('editBtn').style.display = 'inline-flex';
+      // Re-lock after saving
+      isEditing = false;
+      textarea.setAttribute('readonly', true);
+      document.getElementById('lockUnlockBtn').innerHTML = '🔒 Unlock to Edit';
+      document.getElementById('lockUnlockBtn').className = 'btn btn-secondary';
       document.getElementById('saveBtn').style.display = 'none';
+      document.getElementById('safetyBanner').style.display = 'none';
       
       let status = document.getElementById('saveStatus');
-      status.innerText = '✓ Saved successfully securely!';
+      status.innerText = '✓ Saved & Locked Successfully!';
       setTimeout(() => { status.innerText = ''; }, 3000);
     }
 
     function copyData() {
       let textarea = document.getElementById('marketDataInput');
-      textarea.select();
-      textarea.setSelectionRange(0, 99999); // For mobile devices
-      
       navigator.clipboard.writeText(textarea.value).then(() => {
         let status = document.getElementById('saveStatus');
         status.innerText = '✓ Copied to clipboard!';
         setTimeout(() => { status.innerText = ''; }, 3000);
+      });
+    }
+
+    // App ke liye data lene ka feature (JSON format)
+    function exportAppData() {
+      let allData = {
+        sridevi: localStorage.getItem('a23_market_sridevi') || '',
+        timebazaar: localStorage.getItem('a23_market_timebazaar') || '',
+        milan: localStorage.getItem('a23_market_milan') || '',
+        kalyan: localStorage.getItem('a23_market_kalyan') || '',
+        other: localStorage.getItem('a23_market_other') || '',
+        updatedAt: new Date().toISOString()
+      };
+
+      let jsonString = JSON.stringify(allData, null, 2);
+      navigator.clipboard.writeText(jsonString).then(() => {
+        let status = document.getElementById('saveStatus');
+        status.innerText = '✓ App JSON Copied! App me paste kar sakte hain.';
+        setTimeout(() => { status.innerText = ''; }, 4000);
       });
     }
 
