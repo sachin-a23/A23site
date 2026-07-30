@@ -3,26 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A23 PRO - Admin Panel</title>
+  <title>A23SITE ADMIN - Private Panel</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #121212;
+      background-color: #0b0f19;
       color: #ffffff;
       margin: 0;
       padding: 20px;
     }
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      background: #1e1e1e;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
-    h2 {
+    .portal-header {
       text-align: center;
+      margin-bottom: 20px;
+    }
+    .portal-header h2 {
       color: #00ffcc;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+    .portal-header span {
+      color: #888;
+      font-size: 14px;
+      margin: 0 10px;
+    }
+    .container {
+      max-width: 650px;
+      margin: 0 auto;
+      background: #131b2e;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #1f2c48;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    h3 {
+      color: #00ffcc;
+      font-size: 18px;
+      margin-top: 0;
+    }
+    .sub-text {
+      color: #94a3b8;
+      font-size: 13px;
+      margin-bottom: 15px;
     }
     .market-tabs {
       display: flex;
@@ -31,100 +52,141 @@
       margin-bottom: 15px;
     }
     .tag-btn {
-      background: #2d2d2d;
-      color: #fff;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 4px;
+      background: #1a233a;
+      color: #94a3b8;
+      border: 1px solid #2a3959;
+      padding: 8px 14px;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 13px;
+      font-weight: bold;
     }
     .tag-btn.active {
       background: #00ffcc;
-      color: #121212;
-      font-weight: bold;
+      color: #0b0f19;
+      border-color: #00ffcc;
     }
     label {
       display: block;
       margin-bottom: 8px;
-      font-size: 14px;
-      color: #bbb;
+      font-size: 13px;
+      color: #94a3b8;
     }
     textarea {
       width: 100%;
       height: 250px;
-      background: #2d2d2d;
-      color: #fff;
-      border: 1px solid #444;
-      border-radius: 4px;
-      padding: 10px;
+      background: #0b0f19;
+      color: #00ffcc;
+      border: 1px solid #1f2c48;
+      border-radius: 6px;
+      padding: 12px;
       font-family: monospace;
       font-size: 14px;
       box-sizing: border-box;
       resize: vertical;
     }
-    .btn-container {
-      display: flex;
+    .btn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-top: 15px;
     }
     button.action-btn {
-      flex: 1;
-      background: #00ffcc;
-      color: #121212;
-      border: none;
+      background: #1a233a;
+      color: #00ffcc;
+      border: 1px solid #00ffcc;
       padding: 12px;
       font-weight: bold;
-      border-radius: 4px;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 15px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    button.action-btn.primary {
+      background: #00ffcc;
+      color: #0b0f19;
+    }
+    button.action-btn.github {
+      background: #ff9900;
+      color: #0b0f19;
+      border-color: #ff9900;
+      grid-column: span 2;
     }
     button.action-btn:hover {
-      background: #00cca3;
+      opacity: 0.9;
     }
     #saveStatus {
       margin-top: 10px;
       text-align: center;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 13px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 25px;
+      color: #64748b;
+      font-size: 12px;
+    }
+    .footer a {
+      color: #00ffcc;
+      text-decoration: none;
+      margin: 0 8px;
     }
   </style>
 </head>
 <body>
 
+  <div class="portal-header">
+    <h2>🟢 A23SITE ADMIN <span>Portal Home</span> <span style="color:#00ffcc;">🔒 Private Panel</span></h2>
+  </div>
+
   <div class="container">
-    <h2>A23 PRO Admin Panel</h2>
+    <h3>PRIVATE CONTROL PANEL</h3>
+    <div class="sub-text">Ye section poori tarah se private hai. Aap yahan apna sara market record manage kar sakte hain.</div>
+
+    <div style="font-weight: bold; margin-bottom: 10px; color: #00ffcc;">📈 Market & Kalyan Tracker Data</div>
     
     <!-- Market Selection Tabs -->
     <div class="market-tabs">
-      <button class="tag-btn active" onclick="switchMarket('sridevi', event)">Sridevi</button>
-      <button class="tag-btn" onclick="switchMarket('timebazaar', event)">Time Bazar</button>
-      <button class="tag-btn" onclick="switchMarket('milan', event)">Milan</button>
-      <button class="tag-btn" onclick="switchMarket('kalyan', event)">Kalyan</button>
-      <button class="tag-btn" onclick="switchMarket('other', event)">Other</button>
+      <button class="tag-btn active" onclick="switchMarket('sridevi', event)">SRIDEVI</button>
+      <button class="tag-btn" onclick="switchMarket('timebazaar', event)">TIMEBAZAAR</button>
+      <button class="tag-btn" onclick="switchMarket('milan', event)">MILAN</button>
+      <button class="tag-btn" onclick="switchMarket('kalyan', event)">KALYAN</button>
+      <button class="tag-btn" onclick="switchMarket('other', event)">OTHER</button>
     </div>
 
     <label id="currentMarketLabel">Apna private analysis aur track records yahan likhein (SRIDEVI):</label>
     
     <!-- Data Input Textarea -->
-    <textarea id="marketDataInput" placeholder="Yahan data enter karein..."></textarea>
+    <textarea id="marketDataInput" placeholder="Yahan data enter karein..." disabled></textarea>
     
-    <div class="btn-container">
-      <button class="action-btn" onclick="saveMarketData()">💾 Save Locally</button>
-      <button class="action-btn" style="background: #ff9900;" onclick="exportToJsonFile()">🚀 Sync to GitHub</button>
+    <div class="btn-grid">
+      <button class="action-btn primary" onclick="toggleEdit()">🔓 Unlock to Edit</button>
+      <button class="action-btn" onclick="saveMarketData()">💾 Save Record</button>
+      <button class="action-btn" onclick="copyData()">📋 Copy Data</button>
+      <button class="action-btn" onclick="exportForApp()">📦 Export for App</button>
+      <button class="action-btn github" onclick="syncToGitHub()">🚀 Sync to GitHub (Direct)</button>
     </div>
 
     <div id="saveStatus"></div>
   </div>
 
+  <div class="footer">
+    © 2026 A23SITE • All rights reserved<br>
+    <a href="#">Telegram</a> <a href="#">WhatsApp</a>
+  </div>
+
   <script>
     let activeMarket = 'sridevi';
+    let isEditable = false;
 
     const GITHUB_USERNAME = "sachin-a23";
     const REPO_NAME = "A23site";
     const FILE_PATH = "data.json";
 
-    // Token ko secure tarike se browser ke localStorage se lena
     function getGitHubToken() {
       let token = localStorage.getItem('a23_github_token');
       if (!token) {
@@ -147,7 +209,23 @@
       
       let savedData = localStorage.getItem('a23_market_' + activeMarket) || '';
       document.getElementById('marketDataInput').value = savedData;
+      document.getElementById('marketDataInput').disabled = true;
+      isEditable = false;
+      document.querySelector('button.action-btn.primary').innerText = '🔓 Unlock to Edit';
       document.getElementById('saveStatus').innerText = '';
+    }
+
+    function toggleEdit() {
+      let textarea = document.getElementById('marketDataInput');
+      let btn = document.querySelector('button.action-btn.primary');
+      isEditable = !isEditable;
+      textarea.disabled = !isEditable;
+      if (isEditable) {
+        textarea.focus();
+        btn.innerText = '🔒 Lock Editing';
+      } else {
+        btn.innerText = '🔓 Unlock to Edit';
+      }
     }
 
     function saveMarketData() {
@@ -160,8 +238,40 @@
       setTimeout(() => { status.innerText = ''; }, 3000);
     }
 
-    // GitHub par seedha sync karne ka function
-    async function exportToJsonFile() {
+    function copyData() {
+      let textarea = document.getElementById('marketDataInput');
+      textarea.select();
+      document.execCommand('copy');
+      let status = document.getElementById('saveStatus');
+      status.style.color = '#00ffcc';
+      status.innerText = '✓ Copied to clipboard!';
+      setTimeout(() => { status.innerText = ''; }, 3000);
+    }
+
+    function exportForApp() {
+      const allData = {
+        "sridevi": localStorage.getItem('a23_market_sridevi') || "",
+        "timebazaar": localStorage.getItem('a23_market_timebazaar') || "",
+        "milan": localStorage.getItem('a23_market_milan') || "",
+        "kalyan": localStorage.getItem('a23_market_kalyan') || "",
+        "other": localStorage.getItem('a23_market_other') || "",
+        "last_updated": new Date().toISOString()
+      };
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(allData, null, 2));
+      let downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "data.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+
+      let status = document.getElementById('saveStatus');
+      status.style.color = '#00ffcc';
+      status.innerText = '✓ Downloaded data.json!';
+      setTimeout(() => { status.innerText = ''; }, 3000);
+    }
+
+    async function syncToGitHub() {
       const GITHUB_TOKEN = getGitHubToken();
       if (!GITHUB_TOKEN) {
         alert("GitHub Token zaroori hai!");
@@ -172,7 +282,6 @@
       status.style.color = '#ff9900';
       status.innerText = '⏳ Syncing with GitHub...';
 
-      // Saare markets ka data object banana
       const allData = {
         "sridevi": localStorage.getItem('a23_market_sridevi') || "",
         "timebazaar": localStorage.getItem('a23_market_timebazaar') || "",
@@ -183,7 +292,7 @@
       };
 
       const jsonString = JSON.stringify(allData, null, 2);
-      const contentEncoded = btoa(unescape(encodeURIComponent(jsonString))); // Base64 encoding for GitHub API
+      const contentEncoded = btoa(unescape(encodeURIComponent(jsonString)));
 
       try {
         const getUrl = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/${FILE_PATH}`;
