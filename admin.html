@@ -3,54 +3,193 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Dashboard — A23SITE</title>
+<title>A23SITE — Professional App & AI Store</title>
 <style>
   :root{
-    --bg: #07090e; --bg-card: #0d131f; --border: #1a2333; --text: #f0f4f8; --muted: #829ab1; --accent: #ff3366; --accent-dim: #551122;
+    --bg: #07090e; --bg-card: #0d131f; --bg-input: #121a2b; --border: #1a2333;
+    --text: #f0f4f8; --muted: #829ab1; --accent: #00ffcc; --accent-dim: #005544;
     --mono: 'JetBrains Mono', monospace; --sans: 'Inter', sans-serif;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{background:var(--bg); color:var(--text); font-family:var(--sans); line-height:1.6;}
   a{color:inherit; text-decoration:none;}
-  header{position:sticky; top:0; z-index:100; background:rgba(7,9,14,0.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); padding:16px 24px; display:flex; justify-content:space-between; align-items:center;}
+
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(7,9,14,0.95); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border); padding:16px 24px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+  }
   .logo{font-family:var(--mono); font-weight:700; font-size:18px; color:var(--accent); display:flex; align-items:center; gap:8px;}
-  .logo span{width:8px; height:8px; background:var(--accent); border-radius:50%;}
-  nav{display:flex; gap:18px; font-family:var(--mono); font-size:13px; color:var(--muted);}
+  .logo span{width:8px; height:8px; background:var(--accent); border-radius:50%; box-shadow:0 0 10px var(--accent);}
+  nav{display:flex; gap:15px; font-family:var(--mono); font-size:12.5px; color:var(--muted); flex-wrap:wrap;}
   nav a:hover{color:var(--accent);}
-  .container{max-width:900px; margin:0 auto; padding:40px 24px;}
-  h1{font-size:24px; font-weight:800; margin-bottom:10px; font-family:var(--mono);}
-  p{color:var(--muted); margin-bottom:24px; font-size:14px;}
-  .panel{background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:20px; font-family:var(--mono); font-size:13px; margin-bottom:20px;}
-  .panel h3{color:var(--accent); margin-bottom:10px; font-size:15px;}
-  .market-tags{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;}
-  .tag{background:#121a2b; border:1px solid var(--border); padding:4px 10px; border-radius:6px; font-size:11px; color:var(--muted);}
-  textarea{width:100%; height:150px; background:#040609; border:1px solid var(--border); color:var(--text); padding:12px; border-radius:8px; font-family:var(--mono); margin-top:8px; outline:none;}
-  textarea:focus{border-color:var(--accent);}
+
+  .container{max-width:1000px; margin:0 auto; padding:0 24px 60px;}
+  section{margin-top:35px;}
+  .sec-title{font-size:16px; font-weight:700; margin-bottom:16px; display:flex; align-items:center; gap:10px; font-family:var(--mono); color:var(--accent);}
+  .sec-title::after{content:""; flex:1; height:1px; background:var(--border);}
+
+  .admin-panel{background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:24px; margin-top:20px;}
+  .market-tags{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:15px;}
+  .tag-btn{
+    background:var(--bg-input); border:1px solid var(--border); color:var(--muted);
+    padding:6px 14px; border-radius:8px; font-family:var(--mono); font-size:12px; cursor:pointer; transition:0.2s;
+  }
+  .tag-btn.active, .tag-btn:hover{background:var(--accent-dim); color:var(--accent); border-color:var(--accent);}
+  
+  .market-textarea{
+    width:100%; height:180px; background:var(--bg-input); border:1px solid var(--border);
+    border-radius:12px; padding:15px; color:var(--text); font-family:var(--mono); font-size:13.5px;
+    outline:none; resize:vertical; margin-bottom:15px;
+  }
+  .market-textarea:focus{border-color:var(--accent);}
+  .market-textarea:disabled{opacity: 0.7; cursor: not-allowed;}
+
+  .action-buttons {display: flex; gap: 12px; flex-wrap: wrap;}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    background:var(--accent); color:#07090e; font-family:var(--mono); font-weight:700;
+    padding:10px 16px; border-radius:10px; font-size:12.5px; cursor:pointer; border:none; transition:0.2s;
+  }
+  .btn:hover{opacity:0.9; box-shadow:0 0 12px rgba(0,255,204,0.4);}
+  
+  .btn-secondary { background: var(--bg-input); color: var(--text); border: 1px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); box-shadow: none; }
+
+  .status-msg{font-family:var(--mono); font-size:12px; color:var(--accent); margin-top:10px;}
+
+  footer{
+    border-top:1px solid var(--border); padding:30px 24px; text-align:center; color:var(--muted); font-size:12.5px; font-family:var(--mono);
+    display:flex; flex-direction:column; gap:12px; align-items:center; margin-top: 40px;
+  }
+  .social-links{display:flex; gap:18px; font-size:14px; flex-wrap:wrap; justify-content:center;}
+  .social-links a{color:var(--accent);}
 </style>
 </head>
 <body>
+
   <header>
     <div class="logo"><span></span> A23SITE ADMIN</div>
     <nav>
-      <a href="index.html">← Back to Portal</a>
+      <a href="index.html">Portal Home</a>
+      <a href="admin.html" style="color:var(--accent);">🔒 Private Panel</a>
     </nav>
   </header>
+
   <div class="container">
-    <h1>Private Control Panel</h1>
-    <p>Ye section poori tarah se private hai. Aap yahan apna sara market record manage kar sakte hain.</p>
-    
-    <div class="panel">
-      <h3>📈 Market & Kalyan Tracker Data</h3>
-      <div class="market-tags">
-        <span class="tag">SRIDEVI</span>
-        <span class="tag">TIMEBAZAAR</span>
-        <span class="tag">MILAN</span>
-        <span class="tag">KALYAN</span>
-        <span class="tag">OTHER</span>
+    <section>
+      <div class="sec-title">PRIVATE CONTROL PANEL</div>
+      <div style="color:var(--muted); font-size:13.5px; margin-bottom:20px;">
+        Ye section poori tarah se private hai. Aap yahan apna sara market record manage kar sakte hain.
       </div>
-      <div>Apna private analysis aur track records yahan likhein:</div>
-      <textarea placeholder="Enter private market data, numbers, and notes here..."></textarea>
-    </div>
+
+      <div class="admin-panel">
+        <div style="font-family:var(--mono); font-weight:700; color:var(--accent); margin-bottom:15px; font-size:15px;">
+          📈 Market & Kalyan Tracker Data
+        </div>
+
+        <!-- 1. Market Chun Sake (Select Market Buttons) -->
+        <div class="market-tags">
+          <button class="tag-btn active" onclick="switchMarket('sridevi', event)">SRIDEVI</button>
+          <button class="tag-btn" onclick="switchMarket('timebazaar', event)">TIMEBAZAAR</button>
+          <button class="tag-btn" onclick="switchMarket('milan', event)">MILAN</button>
+          <button class="tag-btn" onclick="switchMarket('kalyan', event)">KALYAN</button>
+          <button class="tag-btn" onclick="switchMarket('other', event)">OTHER</button>
+        </div>
+
+        <div style="font-size:13px; color:var(--muted); margin-bottom:8px;" id="currentMarketLabel">
+          Apna private analysis aur track records yahan likhein (SRIDEVI):
+        </div>
+
+        <textarea id="marketDataInput" class="market-textarea" placeholder="Enter private market data, numbers, and notes here..." disabled></textarea>
+        
+        <!-- 2. Save, Edit, Copy Buttons Bar -->
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <div class="action-buttons">
+            <button id="editBtn" class="btn btn-secondary" onclick="enableEdit()">✏️ Edit</button>
+            <button id="saveBtn" class="btn" onclick="saveMarketData()" style="display:none;">💾 Save Record</button>
+            <button class="btn btn-secondary" onclick="copyData()">📋 Copy</button>
+          </div>
+          <div id="saveStatus" class="status-msg"></div>
+        </div>
+
+      </div>
+    </section>
   </div>
+
+  <footer>
+    <div>&copy; 2026 A23SITE • All rights reserved</div>
+    <div class="social-links">
+      <a href="#" target="_blank">Telegram</a>
+      <a href="#" target="_blank">WhatsApp</a>
+    </div>
+  </footer>
+
+  <script>
+    let activeMarket = 'sridevi';
+
+    function switchMarket(market, event) {
+      activeMarket = market;
+      
+      let buttons = document.querySelectorAll('.tag-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      document.getElementById('currentMarketLabel').innerText = `Apna private analysis aur track records yahan likhein (${market.toUpperCase()}):`;
+      
+      let savedData = localStorage.getItem('a23_market_' + activeMarket) || '';
+      let textarea = document.getElementById('marketDataInput');
+      textarea.value = savedData;
+      
+      // Switch back to view/locked mode on market switch
+      textarea.setAttribute('disabled', 'true');
+      document.getElementById('editBtn').style.display = 'inline-flex';
+      document.getElementById('saveBtn').style.display = 'none';
+      document.getElementById('saveStatus').innerText = '';
+    }
+
+    function enableEdit() {
+      let textarea = document.getElementById('marketDataInput');
+      textarea.removeAttribute('disabled');
+      textarea.focus();
+      
+      document.getElementById('editBtn').style.display = 'none';
+      document.getElementById('saveBtn').style.display = 'inline-flex';
+      document.getElementById('saveStatus').innerText = '⚡ Editing enabled...';
+    }
+
+    function saveMarketData() {
+      let textarea = document.getElementById('marketDataInput');
+      let data = textarea.value;
+      
+      localStorage.setItem('a23_market_' + activeMarket, data);
+      
+      textarea.setAttribute('disabled', 'true');
+      document.getElementById('editBtn').style.display = 'inline-flex';
+      document.getElementById('saveBtn').style.display = 'none';
+      
+      let status = document.getElementById('saveStatus');
+      status.innerText = '✓ Saved successfully securely!';
+      setTimeout(() => { status.innerText = ''; }, 3000);
+    }
+
+    function copyData() {
+      let textarea = document.getElementById('marketDataInput');
+      textarea.select();
+      textarea.setSelectionRange(0, 99999); // For mobile devices
+      
+      navigator.clipboard.writeText(textarea.value).then(() => {
+        let status = document.getElementById('saveStatus');
+        status.innerText = '✓ Copied to clipboard!';
+        setTimeout(() => { status.innerText = ''; }, 3000);
+      });
+    }
+
+    window.onload = function() {
+      let savedData = localStorage.getItem('a23_market_sridevi') || '';
+      document.getElementById('marketDataInput').value = savedData;
+    };
+  </script>
 </body>
 </html>
