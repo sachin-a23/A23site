@@ -66,9 +66,22 @@
   }
   .btn:hover{opacity:0.9; box-shadow:0 0 12px rgba(0,255,204,0.4);}
 
-  /* Info / Blog Box styles */
-  .info-box{background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:20px; color:var(--muted); font-size:14px;}
-  .info-box h3{color:var(--text); margin-bottom:8px; font-family:var(--mono); font-size:15px;}
+  /* Admin Control Panel Styles */
+  .admin-panel{background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:24px; margin-top:20px;}
+  .market-tags{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:15px;}
+  .tag-btn{
+    background:var(--bg-input); border:1px solid var(--border); color:var(--muted);
+    padding:6px 14px; border-radius:8px; font-family:var(--mono); font-size:12px; cursor:pointer; transition:0.2s;
+  }
+  .tag-btn.active, .tag-btn:hover{background:var(--accent-dim); color:var(--accent); border-color:var(--accent);}
+  
+  .market-textarea{
+    width:100%; height:180px; background:var(--bg-input); border:1px solid var(--border);
+    border-radius:12px; padding:15px; color:var(--text); font-family:var(--mono); font-size:13.5px;
+    outline:none; resize:vertical; margin-bottom:15px;
+  }
+  .market-textarea:focus{border-color:var(--accent);}
+  .status-msg{font-family:var(--mono); font-size:12px; color:var(--accent); margin-top:8px;}
 
   footer{
     border-top:1px solid var(--border); padding:30px 24px; text-align:center; color:var(--muted); font-size:12.5px; font-family:var(--mono);
@@ -81,67 +94,45 @@
 <body>
 
   <header>
-    <div class="logo"><span></span> A23SITE</div>
+    <div class="logo"><span></span> A23SITE ADMIN</div>
     <nav>
-      <a href="index.html" style="color:var(--accent);">Home</a>
-      <a href="termux.html">Termux & Tools</a>
-      <a href="blog.html">Blog & Info</a>
-      <a href="admin.html" style="color:#ff3366;">🔒 Admin Panel</a>
+      <a href="index.html">Portal Home</a>
+      <a href="admin.html" style="color:var(--accent);">🔒 Private Panel</a>
     </nav>
   </header>
 
-  <div class="hero">
-    <h1>Explore <span>A23SITE</span> Portal</h1>
-    <p>Search apps, AI tools, utilities, and developer scripts instantly.</p>
-    
-    <div class="search-bar-container">
-      <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search apps, AI, tools..." onkeyup="searchApps()">
-    </div>
-  </div>
-
   <div class="container">
-    
-    <!-- Apps Section -->
-    <section id="apps">
-      <div class="sec-title">01 / APPS & AI PROJECTS</div>
-      <div class="grid" id="appGrid">
+    <section>
+      <div class="sec-title">PRIVATE CONTROL PANEL</div>
+      <div style="color:var(--muted); font-size:13.5px; margin-bottom:20px;">
+        Ye section poori tarah se private hai. Aap yahan apna sara market record manage kar sakte hain.
+      </div>
+
+      <div class="admin-panel">
+        <div style="font-family:var(--mono); font-weight:700; color:var(--accent); margin-bottom:15px; font-size:15px;">
+          📈 Market & Kalyan Tracker Data
+        </div>
+
+        <div class="market-tags">
+          <button class="tag-btn active" onclick="switchMarket('sridevi')">SRIDEVI</button>
+          <button class="tag-btn" onclick="switchMarket('timebazaar')">TIMEBAZAAR</button>
+          <button class="tag-btn" onclick="switchMarket('milan')">MILAN</button>
+          <button class="tag-btn" onclick="switchMarket('kalyan')">KALYAN</button>
+          <button class="tag-btn" onclick="switchMarket('other')">OTHER</button>
+        </div>
+
+        <div style="font-size:13px; color:var(--muted); margin-bottom:8px;" id="currentMarketLabel">
+          Apna private analysis aur track records yahan likhein (Sridevi):
+        </div>
+
+        <textarea id="marketDataInput" class="market-textarea" placeholder="Enter private market data, numbers, and notes here..."></textarea>
         
-        <div class="card" data-name="a23-pro engine prediction">
-          <div class="card-top">
-            <div class="app-icon">A23</div>
-            <div>
-              <div class="app-title">A23-PRO</div>
-              <div class="app-meta">v1.0 • AI Engine</div>
-            </div>
-          </div>
-          <p>Advanced data analysis engine and prediction toolkit built for maximum efficiency.</p>
-          <a href="#" class="btn">↓ Download APK</a>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <button class="btn" onclick="saveMarketData()">💾 Save Record</button>
+          <div id="saveStatus" class="status-msg"></div>
         </div>
-
-        <div class="card" data-name="gemini chat hub ai chatbot">
-          <div class="card-top">
-            <div class="app-icon" style="color:#34d1a0;">AI</div>
-            <div>
-              <div class="app-title">Gemini Chat Hub</div>
-              <div class="app-meta">v1.0 • AI Chatbot</div>
-            </div>
-          </div>
-          <p>Lightweight mobile chatbot app powered by direct LLM API integration.</p>
-          <a href="#" class="btn">↓ Download APK</a>
-        </div>
-
       </div>
     </section>
-
-    <!-- Quick Info Section -->
-    <section id="info">
-      <div class="sec-title">02 / PORTAL OVERVIEW</div>
-      <div class="info-box">
-        <h3>Welcome to the Centralized Hub</h3>
-        <p>This platform hosts verified application builds, Termux utility workflows, and personal tracking structures. Use the top navigation menu to switch between sections seamlessly.</p>
-      </div>
-    </section>
-
   </div>
 
   <footer>
@@ -149,25 +140,42 @@
     <div class="social-links">
       <a href="#" target="_blank">Telegram</a>
       <a href="#" target="_blank">WhatsApp</a>
-      <a href="#" target="_blank">Instagram</a>
-      <a href="#" target="_blank">Facebook</a>
-      <a href="#" target="_blank">GitHub</a>
     </div>
   </footer>
 
   <script>
-    function searchApps() {
-      let input = document.getElementById('searchInput').value.toLowerCase();
-      let cards = document.getElementsByClassName('card');
-      for (let i = 0; i < cards.length; i++) {
-        let name = cards[i].getAttribute('data-name');
-        if (name.includes(input)) {
-          cards[i].style.display = "";
-        } else {
-          cards[i].style.display = "none";
-        }
-      }
+    let activeMarket = 'sridevi';
+
+    function switchMarket(market) {
+      activeMarket = market;
+      
+      // Update active button styles
+      let buttons = document.querySelectorAll('.tag-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      // Update label and load saved data for this market
+      document.getElementById('currentMarketLabel').innerText = `Apna private analysis aur track records yahan likhein (${market.toUpperCase()}) :`;
+      
+      let savedData = localStorage.getItem('a23_market_' + activeMarket) || '';
+      document.getElementById('marketDataInput').value = savedData;
+      document.getElementById('saveStatus').innerText = '';
     }
+
+    function saveMarketData() {
+      let data = document.getElementById('marketDataInput').value;
+      localStorage.setItem('a23_market_' + activeMarket, data);
+      
+      let status = document.getElementById('saveStatus');
+      status.innerText = '✓ Saved successfully securely!';
+      setTimeout(() => { status.innerText = ''; }, 3000);
+    }
+
+    // Load initial data on page load
+    window.onload = function() {
+      let savedData = localStorage.getItem('a23_market_sridevi') || '';
+      document.getElementById('marketDataInput').value = savedData;
+    };
   </script>
 </body>
 </html>
