@@ -41,37 +41,25 @@
   .market-textarea{
     width:100%; height:180px; background:var(--bg-input); border:1px solid var(--border);
     border-radius:12px; padding:15px; color:var(--text); font-family:var(--mono); font-size:13.5px;
-    outline:none; resize:vertical; margin-bottom:15px; transition:0.3s;
+    outline:none; resize:vertical; margin-bottom:15px;
   }
   .market-textarea:focus{border-color:var(--accent);}
-  .market-textarea:read-only {opacity: 0.8; border-color: var(--border); background: #0a0e17; cursor: default;}
-
-  .action-buttons {display: flex; gap: 12px; flex-wrap: wrap;}
+  
   .btn{
-    display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
     background:var(--accent); color:#07090e; font-family:var(--mono); font-weight:700;
-    padding:10px 16px; border-radius:10px; font-size:12.5px; cursor:pointer; border:none; transition:0.2s;
+    padding:10px 14px; border-radius:10px; font-size:12.5px; cursor:pointer; border:none; transition:0.2s;
   }
   .btn:hover{opacity:0.9; box-shadow:0 0 12px rgba(0,255,204,0.4);}
-  
-  .btn-secondary { background: var(--bg-input); color: var(--text); border: 1px solid var(--border); }
-  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); box-shadow: none; }
-  
-  .btn-danger { background: #ff3366; color: #fff; }
-  .btn-danger:hover { box-shadow: 0 0 12px rgba(255,51,102,0.4); }
-
-  .status-msg{font-family:var(--mono); font-size:12px; color:var(--accent); margin-top:10px;}
-
-  /* Safety Warning Box */
-  .warning-banner {
-    background: rgba(255, 170, 0, 0.1); border: 1px solid rgba(255, 170, 0, 0.3);
-    padding: 10px 14px; border-radius: 8px; font-size: 12px; color: #ffaa00;
-    font-family: var(--mono); margin-bottom: 15px; display: flex; align-items: center; gap: 8px;
+  .btn-outline{
+    background:var(--bg-input); color:var(--accent); border:1px solid var(--accent);
   }
+  
+  .status-msg{font-family:var(--mono); font-size:12px; color:var(--accent);}
 
   footer{
     border-top:1px solid var(--border); padding:30px 24px; text-align:center; color:var(--muted); font-size:12.5px; font-family:var(--mono);
-    display:flex; flex-direction:column; gap:12px; align-items:center; margin-top: 40px;
+    display:flex; flex-direction:column; gap:12px; align-items:center;
   }
   .social-links{display:flex; gap:18px; font-size:14px; flex-wrap:wrap; justify-content:center;}
   .social-links a{color:var(--accent);}
@@ -99,7 +87,6 @@
           📈 Market & Kalyan Tracker Data
         </div>
 
-        <!-- Market Selection Buttons -->
         <div class="market-tags">
           <button class="tag-btn active" onclick="switchMarket('sridevi', event)">SRIDEVI</button>
           <button class="tag-btn" onclick="switchMarket('timebazaar', event)">TIMEBAZAAR</button>
@@ -108,29 +95,19 @@
           <button class="tag-btn" onclick="switchMarket('other', event)">OTHER</button>
         </div>
 
-        <!-- Safety Notice Banner -->
-        <div id="safetyBanner" class="warning-banner" style="display:none;">
-          ⚠️ <b>Edit Mode Active:</b> File unlocked hai. Badlav karne ke baad 'Save' zaroor karein!
-        </div>
-
         <div style="font-size:13px; color:var(--muted); margin-bottom:8px;" id="currentMarketLabel">
           Apna private analysis aur track records yahan likhein (SRIDEVI):
         </div>
 
-        <!-- Textarea with ReadOnly protection by default -->
-        <textarea id="marketDataInput" class="market-textarea" placeholder="Enter private market data, numbers, and notes here..." readonly></textarea>
+        <textarea id="marketDataInput" class="market-textarea" placeholder="Enter private market data, numbers, and notes here..."></textarea>
         
-        <!-- Action Buttons -->
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-          <div class="action-buttons">
-            <button id="lockUnlockBtn" class="btn btn-secondary" onclick="toggleEditMode()">🔒 Unlock to Edit</button>
-            <button id="saveBtn" class="btn" onclick="saveMarketData()" style="display:none;">💾 Save Changes</button>
-            <button class="btn btn-secondary" onclick="copyData()">📋 Copy Data</button>
-            <button class="btn btn-secondary" onclick="exportAppData()" title="App ke liye JSON format download karein">📦 Export for App</button>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn" onclick="saveMarketData()">💾 Save Record</button>
+            <button class="btn btn-outline" onclick="exportToJsonFile()">📥 Export data.json</button>
           </div>
           <div id="saveStatus" class="status-msg"></div>
         </div>
-
       </div>
     </section>
   </div>
@@ -145,108 +122,51 @@
 
   <script>
     let activeMarket = 'sridevi';
-    let isEditing = false;
 
     function switchMarket(market, event) {
       activeMarket = market;
       
       let buttons = document.querySelectorAll('.tag-btn');
       buttons.forEach(btn => btn.classList.remove('active'));
-      event.currentTarget.classList.add('active');
+      event.target.classList.add('active');
 
       document.getElementById('currentMarketLabel').innerText = `Apna private analysis aur track records yahan likhein (${market.toUpperCase()}):`;
       
       let savedData = localStorage.getItem('a23_market_' + activeMarket) || '';
-      let textarea = document.getElementById('marketDataInput');
-      textarea.value = savedData;
-      
-      // Reset edit lock when switching market
-      isEditing = false;
-      textarea.setAttribute('readonly', true);
-      document.getElementById('lockUnlockBtn').innerHTML = '🔒 Unlock to Edit';
-      document.getElementById('lockUnlockBtn').className = 'btn btn-secondary';
-      document.getElementById('saveBtn').style.display = 'none';
-      document.getElementById('safetyBanner').style.display = 'none';
+      document.getElementById('marketDataInput').value = savedData;
       document.getElementById('saveStatus').innerText = '';
     }
 
-    function toggleEditMode() {
-      let textarea = document.getElementById('marketDataInput');
-      let btn = document.getElementById('lockUnlockBtn');
-      let saveBtn = document.getElementById('saveBtn');
-      let banner = document.getElementById('safetyBanner');
-
-      if (!isEditing) {
-        // Unlock for editing
-        isEditing = true;
-        textarea.removeAttribute('readonly');
-        textarea.focus();
-        btn.innerHTML = '❌ Lock / Cancel';
-        btn.className = 'btn btn-danger';
-        saveBtn.style.display = 'inline-flex';
-        banner.style.display = 'flex';
-        document.getElementById('saveStatus').innerText = '⚡ Mode: Editing Enabled';
-      } else {
-        // Lock back without saving changes
-        isEditing = false;
-        textarea.setAttribute('readonly', true);
-        btn.innerHTML = '🔒 Unlock to Edit';
-        btn.className = 'btn btn-secondary';
-        saveBtn.style.display = 'none';
-        banner.style.display = 'none';
-        
-        // Reload original saved data
-        textarea.value = localStorage.getItem('a23_market_' + activeMarket) || '';
-        document.getElementById('saveStatus').innerText = '🔒 Locked securely.';
-        setTimeout(() => { document.getElementById('saveStatus').innerText = ''; }, 2000);
-      }
-    }
-
     function saveMarketData() {
-      let textarea = document.getElementById('marketDataInput');
-      let data = textarea.value;
-      
+      let data = document.getElementById('marketDataInput').value;
       localStorage.setItem('a23_market_' + activeMarket, data);
       
-      // Re-lock after saving
-      isEditing = false;
-      textarea.setAttribute('readonly', true);
-      document.getElementById('lockUnlockBtn').innerHTML = '🔒 Unlock to Edit';
-      document.getElementById('lockUnlockBtn').className = 'btn btn-secondary';
-      document.getElementById('saveBtn').style.display = 'none';
-      document.getElementById('safetyBanner').style.display = 'none';
-      
       let status = document.getElementById('saveStatus');
-      status.innerText = '✓ Saved & Locked Successfully!';
+      status.innerText = '✓ Saved successfully securely!';
       setTimeout(() => { status.innerText = ''; }, 3000);
     }
 
-    function copyData() {
-      let textarea = document.getElementById('marketDataInput');
-      navigator.clipboard.writeText(textarea.value).then(() => {
-        let status = document.getElementById('saveStatus');
-        status.innerText = '✓ Copied to clipboard!';
-        setTimeout(() => { status.innerText = ''; }, 3000);
-      });
-    }
-
-    // App ke liye data lene ka feature (JSON format)
-    function exportAppData() {
-      let allData = {
-        sridevi: localStorage.getItem('a23_market_sridevi') || '',
-        timebazaar: localStorage.getItem('a23_market_timebazaar') || '',
-        milan: localStorage.getItem('a23_market_milan') || '',
-        kalyan: localStorage.getItem('a23_market_kalyan') || '',
-        other: localStorage.getItem('a23_market_other') || '',
-        updatedAt: new Date().toISOString()
+    function exportToJsonFile() {
+      const allData = {
+        "sridevi": localStorage.getItem('a23_market_sridevi') || "",
+        "timebazaar": localStorage.getItem('a23_market_timebazaar') || "",
+        "milan": localStorage.getItem('a23_market_milan') || "",
+        "kalyan": localStorage.getItem('a23_market_kalyan') || "",
+        "other": localStorage.getItem('a23_market_other') || "",
+        "last_updated": new Date().toISOString()
       };
 
-      let jsonString = JSON.stringify(allData, null, 2);
-      navigator.clipboard.writeText(jsonString).then(() => {
-        let status = document.getElementById('saveStatus');
-        status.innerText = '✓ App JSON Copied! App me paste kar sakte hain.';
-        setTimeout(() => { status.innerText = ''; }, 4000);
-      });
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(allData, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "data.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+
+      let status = document.getElementById('saveStatus');
+      status.innerText = '✓ data.json downloaded successfully!';
+      setTimeout(() => { status.innerText = ''; }, 3000);
     }
 
     window.onload = function() {
