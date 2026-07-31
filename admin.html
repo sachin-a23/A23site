@@ -145,7 +145,7 @@
 
   <div class="container">
     <h3>PRIVATE CONTROL PANEL</h3>
-    <div class="sub-text">Ye section poori tarah se private hai. Aap yahan apna sara market record manage kar sakte hain.</div>
+    <div class="sub-text">Ye section poori tarah se private hai. Aap yahan apna sara market record manage kar sakte hain. (Format line: DD-MM-YYYY / Result)</div>
 
     <div style="font-weight: bold; margin-bottom: 10px; color: #00ffcc;">📈 Market & Kalyan Tracker Data</div>
     
@@ -161,7 +161,7 @@
     <label id="currentMarketLabel">Apna private analysis aur track records yahan likhein (SRIDEVI):</label>
     
     <!-- Data Input Textarea -->
-    <textarea id="marketDataInput" placeholder="Yahan data enter karein..." disabled></textarea>
+    <textarea id="marketDataInput" placeholder="Jaise enter karein:&#10;28-07-2026 / 120-38-189&#10;29-07-2026 / 567-88-234" disabled></textarea>
     
     <div class="btn-grid">
       <button class="action-btn primary" onclick="toggleEdit()">🔓 Unlock to Edit</button>
@@ -248,16 +248,47 @@
       setTimeout(() => { status.innerText = ''; }, 3000);
     }
 
-    function exportForApp() {
-      const allData = {
-        "sridevi": localStorage.getItem('a23_market_sridevi') || "",
-        "timebazaar": localStorage.getItem('a23_market_timebazaar') || "",
-        "milan": localStorage.getItem('a23_market_milan') || "",
-        "kalyan": localStorage.getItem('a23_market_kalyan') || "",
-        "other": localStorage.getItem('a23_market_other') || "",
-        "last_updated": new Date().toISOString()
+    // Helper function to build standard app payload from all market text areas
+    function buildAppPayload() {
+      const marketKeys = ["sridevi", "timebazaar", "milan", "kalyan", "other"];
+      let recordsArray = [];
+
+      marketKeys.forEach(mKey => {
+        let rawText = localStorage.getItem('a23_market_' + mKey) || "";
+        if (rawText.trim() !== "") {
+          let lines = rawText.split('\n');
+          lines.forEach(line => {
+            let parts = line.split('/');
+            if (parts.length >= 2) {
+              let dateStr = parts[0].trim();
+              let resStr = parts[1].trim();
+              if (dateStr && resStr) {
+                let formattedMarketName = mKey.toUpperCase();
+                if (formattedMarketName === "TIMEBAZAAR") formattedMarketName = "TIME BAZAR";
+                
+                recordsArray.push({
+                  marketName: formattedMarketName,
+                  date: dateStr,
+                  result: resStr,
+                  isHoliday: resStr.includes("***") || resStr.toLowerCase().includes("holiday")
+                });
+              }
+            }
+          });
+        }
+      });
+
+      return {
+        version: "1.0",
+        last_updated: new Date().toLocaleString(),
+        markets: ["SHRIDEVI", "KALYAN", "MILAN", "TIME BAZAR", "OTHER"],
+        records: recordsArray
       };
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(allData, null, 2));
+    }
+
+    function exportForApp() {
+      const appPayload = buildAppPayload();
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appPayload, null, 2));
       let downloadAnchor = document.createElement('a');
       downloadAnchor.setAttribute("href", dataStr);
       downloadAnchor.setAttribute("download", "data.json");
@@ -282,16 +313,8 @@
       status.style.color = '#ff9900';
       status.innerText = '⏳ Syncing with GitHub...';
 
-      const allData = {
-        "sridevi": localStorage.getItem('a23_market_sridevi') || "",
-        "timebazaar": localStorage.getItem('a23_market_timebazaar') || "",
-        "milan": localStorage.getItem('a23_market_milan') || "",
-        "kalyan": localStorage.getItem('a23_market_kalyan') || "",
-        "other": localStorage.getItem('a23_market_other') || "",
-        "last_updated": new Date().toISOString()
-      };
-
-      const jsonString = JSON.stringify(allData, null, 2);
+      const appPayload = buildAppPayload();
+      const jsonString = JSON.stringify(appPayload, null, 2);
       const contentEncoded = btoa(unescape(encodeURIComponent(jsonString)));
 
       try {
@@ -299,7 +322,10 @@
         
         let fileSha = "";
         const getResponse = await fetch(getUrl, {
-          headers: { "Authorization": `token ${GITHUB_TOKEN}` }
+          headers: { 
+            "Authorization": `token ${GITHUB_TOKEN}`,
+            "Accept": "application/vnd.github.v3+json"
+          }
         });
         
         if (getResponse.ok) {
@@ -311,12 +337,13 @@
           method: "PUT",
           headers: {
             "Authorization": `token ${GITHUB_TOKEN}`,
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Accept": "application/vnd.github.v3+json"
           },
           body: JSON.stringify({
-            message: "Update market data via Admin Panel",
+            message: "Update market records via A23 PRO Admin Panel",
             content: contentEncoded,
-            sha: fileSha
+            ...(fileSha ? { sha: fileSha } : {})
           })
         });
 
@@ -326,7 +353,7 @@
         } else {
           const errData = await putResponse.json();
           status.style.color = '#ff4444';
-          status.innerText = '❌ Error: ' + errData.message;
+          status.innerText = '❌ Error: ' + (errData.message || "Push failed");
         }
       } catch (error) {
         status.style.color = '#ff4444';
