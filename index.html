@@ -114,7 +114,7 @@
         </div>
 
         <div class="market-tags">
-          <button class="tag-btn active" onclick="switchMarket('sridevi')">SRIDEVI</button>
+          <button class="tag-btn active" onclick="switchMarket('shridevi')">SRIDEVI</button>
           <button class="tag-btn" onclick="switchMarket('timebazaar')">TIMEBAZAAR</button>
           <button class="tag-btn" onclick="switchMarket('milan')">MILAN</button>
           <button class="tag-btn" onclick="switchMarket('kalyan')">KALYAN</button>
@@ -144,7 +144,7 @@
   </footer>
 
   <script>
-    let activeMarket = 'sridevi';
+    let activeMarket = 'shridevi';
 
     function switchMarket(market) {
       activeMarket = market;
@@ -173,7 +173,7 @@
 
     // Load initial data on page load
     window.onload = function() {
-      let savedData = localStorage.getItem('a23_market_sridevi') || '';
+      let savedData = localStorage.getItem('a23_market_shridevi') || '';
       document.getElementById('marketDataInput').value = savedData;
     };
   </script>
