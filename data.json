@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "last_updated": "7/31/2026, 6:09:14 PM",
+  "last_updated": "7/31/2026, 6:32:58 PM",
   "markets": [
     "SHRIDEVI",
     "KALYAN",
@@ -2041,6 +2041,60 @@
       "marketName": "SHRIDEVI",
       "date": "19-07-2026",
       "result": "268 - 67 - 160",
+      "isHoliday": false
+    },
+    {
+      "marketName": "SHRIDEVI",
+      "date": "20-07-2026",
+      "result": "269 - 76 - 790",
+      "isHoliday": false
+    },
+    {
+      "marketName": "SHRIDEVI",
+      "date": "21-07-2026",
+      "result": "268 - 67 - 223",
+      "isHoliday": false
+    },
+    {
+      "marketName": "SHRIDEVI",
+      "date": "22-07-2026",
+      "result": "668 - 03 - 247",
+      "isHoliday": false
+    },
+    {
+      "marketName": "SHRIDEVI",
+      "date": "23-07-2026",
+      "result": "246 - 22 - 679",
+      "isHoliday": false
+    },
+    {
+      "marketName": "SHRIDEVI",
+      "date": "24-07-2026",
+      "result": "256 - 38 - 558",
+      "isHoliday": false
+    },
+    {
+      "marketName": "SHRIDEVI",
+      "date": "25-07-2026",
+      "result": "135 - 90 - 370",
+      "isHoliday": false
+    },
+    {
+      "marketName": "SHRIDEVI",
+      "date": "26-07-2026",
+      "result": "689 - 33 - 157",
+      "isHoliday": false
+    },
+    {
+      "marketName": "SHRIDEVI",
+      "date": "27-07-2026",
+      "result": "469 - 99 - 667",
+      "isHoliday": false
+    },
+    {
+      "marketName": "SHRIDEVI",
+      "date": "28-07-2026",
+      "result": "140 - 51 - 489",
       "isHoliday": false
     },
     {
