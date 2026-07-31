@@ -151,14 +151,14 @@
     
     <!-- Market Selection Tabs -->
     <div class="market-tabs">
-      <button class="tag-btn active" onclick="switchMarket('sridevi', event)">SRIDEVI</button>
+      <button class="tag-btn active" onclick="switchMarket('sridevi', event)">SHRIDEVI</button>
       <button class="tag-btn" onclick="switchMarket('timebazaar', event)">TIMEBAZAAR</button>
       <button class="tag-btn" onclick="switchMarket('milan', event)">MILAN</button>
       <button class="tag-btn" onclick="switchMarket('kalyan', event)">KALYAN</button>
       <button class="tag-btn" onclick="switchMarket('other', event)">OTHER</button>
     </div>
 
-    <label id="currentMarketLabel">Apna private analysis aur track records yahan likhein (SRIDEVI):</label>
+    <label id="currentMarketLabel">Apna private analysis aur track records yahan likhein (SHRIDEVI):</label>
     
     <!-- Data Input Textarea -->
     <textarea id="marketDataInput" placeholder="Jaise enter karein:&#10;28-07-2026 / 120-38-189&#10;29-07-2026 / 567-88-234" disabled></textarea>
@@ -250,7 +250,7 @@
 
     // Helper function to build standard app payload from all market text areas
     function buildAppPayload() {
-      const marketKeys = ["sridevi", "timebazaar", "milan", "kalyan", "other"];
+      const marketKeys = ["shridevi", "timebazaar", "milan", "kalyan", "other"];
       let recordsArray = [];
 
       marketKeys.forEach(mKey => {
