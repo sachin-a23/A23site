@@ -205,7 +205,7 @@
       buttons.forEach(btn => btn.classList.remove('active'));
       event.target.classList.add('active');
 
-      document.getElementById('currentMarketLabel').innerText = `Apna private analysis aur track records yahan likhein (${market.toUpperCase()}):`;
+      document.getElementById('currentMarketLabel').innerText = `Apna private analysis aur track records yahan likhein (${market.toUpperCase() === 'SRIDEVI' ? 'SHRIDEVI' : market.toUpperCase()}):`;
       
       let savedData = localStorage.getItem('a23_market_' + activeMarket) || '';
       document.getElementById('marketDataInput').value = savedData;
@@ -250,7 +250,7 @@
 
     // Helper function to build standard app payload from all market text areas
     function buildAppPayload() {
-      const marketKeys = ["shridevi", "timebazaar", "milan", "kalyan", "other"];
+      const marketKeys = ["sridevi", "timebazaar", "milan", "kalyan", "other"];
       let recordsArray = [];
 
       marketKeys.forEach(mKey => {
@@ -264,7 +264,14 @@
               let resStr = parts[1].trim();
               if (dateStr && resStr) {
                 let formattedMarketName = mKey.toUpperCase();
-                if (formattedMarketName === "TIMEBAZAAR") formattedMarketName = "TIME BAZAR";
+                
+                // Normalization fix to ensure proper spelling and avoid duplicates
+                if (formattedMarketName === "SRIDEVI") {
+                  formattedMarketName = "SHRIDEVI";
+                }
+                if (formattedMarketName === "TIMEBAZAAR") {
+                  formattedMarketName = "TIME BAZAR";
+                }
                 
                 recordsArray.push({
                   marketName: formattedMarketName,
