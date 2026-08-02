@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "last_updated": "7/31/2026, 6:36:27 PM",
+  "last_updated": "8/2/2026, 8:31:32 AM",
   "markets": [
     "SHRIDEVI",
     "KALYAN",
@@ -2095,6 +2095,30 @@
       "marketName": "SHRIDEVI",
       "date": "28-07-2026",
       "result": "140 - 51 - 489",
+      "isHoliday": false
+    },
+    {
+      "marketName": "SHRIDEVI",
+      "date": "29-07-2026",
+      "result": "345 - 27 - 359",
+      "isHoliday": false
+    },
+    {
+      "marketName": "SHRIDEVI",
+      "date": "30-07-2026",
+      "result": "126 - 90 - 488",
+      "isHoliday": false
+    },
+    {
+      "marketName": "SHRIDEVI",
+      "date": "31-07-2026",
+      "result": "157 - 39 - 234",
+      "isHoliday": false
+    },
+    {
+      "marketName": "SHRIDEVI",
+      "date": "01-08-2026",
+      "result": "245 - 16 - 367",
       "isHoliday": false
     },
     {
@@ -4688,6 +4712,84 @@
       "date": "19-07-2026",
       "result": "*** - ** - ***",
       "isHoliday": true
+    },
+    {
+      "marketName": "TIME BAZAR",
+      "date": "20-07-2026",
+      "result": "169 - 63 - 355",
+      "isHoliday": false
+    },
+    {
+      "marketName": "TIME BAZAR",
+      "date": "21-07-2026",
+      "result": "270 - 93 - 337",
+      "isHoliday": false
+    },
+    {
+      "marketName": "TIME BAZAR",
+      "date": "22-07-2026",
+      "result": "259 - 64 - 338",
+      "isHoliday": false
+    },
+    {
+      "marketName": "TIME BAZAR",
+      "date": "23-07-2026",
+      "result": "678 - 13 - 346",
+      "isHoliday": false
+    },
+    {
+      "marketName": "TIME BAZAR",
+      "date": "24-07-2026",
+      "result": "148 - 35 - 357",
+      "isHoliday": false
+    },
+    {
+      "marketName": "TIME BAZAR",
+      "date": "25-07-2026",
+      "result": "557 - 79 - 289",
+      "isHoliday": false
+    },
+    {
+      "marketName": "TIME BAZAR",
+      "date": "26-07-2026",
+      "result": "*** - ** - ***",
+      "isHoliday": true
+    },
+    {
+      "marketName": "TIME BAZAR",
+      "date": "27-07-2026",
+      "result": "260 - 81 - 579",
+      "isHoliday": false
+    },
+    {
+      "marketName": "TIME BAZAR",
+      "date": "28-07-2026",
+      "result": "246 - 25 - 690",
+      "isHoliday": false
+    },
+    {
+      "marketName": "TIME BAZAR",
+      "date": "29-07-2026",
+      "result": "190 - 03 - 689",
+      "isHoliday": false
+    },
+    {
+      "marketName": "TIME BAZAR",
+      "date": "30-07-2026",
+      "result": "690 - 51 - 137",
+      "isHoliday": false
+    },
+    {
+      "marketName": "TIME BAZAR",
+      "date": "31-07-2026",
+      "result": "790 - 60 - 280",
+      "isHoliday": false
+    },
+    {
+      "marketName": "TIME BAZAR",
+      "date": "01-08-2026",
+      "result": "146 - 17 - 359",
+      "isHoliday": false
     },
     {
       "marketName": "MILAN",
@@ -8702,6 +8804,84 @@
       "date": "19-07-2026",
       "result": "*** - ** - ***",
       "isHoliday": true
+    },
+    {
+      "marketName": "KALYAN",
+      "date": "20-07-2026",
+      "result": "598 - 31 - 579",
+      "isHoliday": false
+    },
+    {
+      "marketName": "KALYAN",
+      "date": "21-07-2026",
+      "result": "337 - 31 - 290",
+      "isHoliday": false
+    },
+    {
+      "marketName": "KALYAN",
+      "date": "22-07-2026",
+      "result": "700 - 78 - 260",
+      "isHoliday": false
+    },
+    {
+      "marketName": "KALYAN",
+      "date": "23-07-2026",
+      "result": "578 - 00 - 226",
+      "isHoliday": false
+    },
+    {
+      "marketName": "KALYAN",
+      "date": "24-07-2026",
+      "result": "334 - 04 - 130",
+      "isHoliday": false
+    },
+    {
+      "marketName": "KALYAN",
+      "date": "25-07-2026",
+      "result": "160 - 74 - 239",
+      "isHoliday": false
+    },
+    {
+      "marketName": "KALYAN",
+      "date": "26-07-2026",
+      "result": "*** - ** - ***",
+      "isHoliday": true
+    },
+    {
+      "marketName": "KALYAN",
+      "date": "27-07-2026",
+      "result": "200 - 26 - 790",
+      "isHoliday": false
+    },
+    {
+      "marketName": "KALYAN",
+      "date": "28-07-2026",
+      "result": "589 - 26 - 899",
+      "isHoliday": false
+    },
+    {
+      "marketName": "KALYAN",
+      "date": "29-07-2026",
+      "result": "338 - 45 - 690",
+      "isHoliday": false
+    },
+    {
+      "marketName": "KALYAN",
+      "date": "30-07-2026",
+      "result": "147 - 28 - 134",
+      "isHoliday": false
+    },
+    {
+      "marketName": "KALYAN",
+      "date": "31-07-2026",
+      "result": "138 - 23 - 490",
+      "isHoliday": false
+    },
+    {
+      "marketName": "KALYAN",
+      "date": "01-08-2026",
+      "result": "256 - 32 - 129",
+      "isHoliday": false
     }
   ]
 }
