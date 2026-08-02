@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "last_updated": "8/2/2026, 8:31:32 AM",
+  "last_updated": "8/2/2026, 8:36:26 AM",
   "markets": [
     "SHRIDEVI",
     "KALYAN",
@@ -7172,6 +7172,84 @@
       "date": "19-07-2026",
       "result": "*** - ** - ***",
       "isHoliday": true
+    },
+    {
+      "marketName": "MILAN",
+      "date": "20-07-2026",
+      "result": "150 - 64 - 220",
+      "isHoliday": false
+    },
+    {
+      "marketName": "MILAN",
+      "date": "21-07-2026",
+      "result": "125 - 83 - 490",
+      "isHoliday": false
+    },
+    {
+      "marketName": "MILAN",
+      "date": "22-07-2026",
+      "result": "113 - 56 - 349",
+      "isHoliday": false
+    },
+    {
+      "marketName": "MILAN",
+      "date": "23-07-2026",
+      "result": "279 - 88 - 279",
+      "isHoliday": false
+    },
+    {
+      "marketName": "MILAN",
+      "date": "24-07-2026",
+      "result": "167 - 43 - 346",
+      "isHoliday": false
+    },
+    {
+      "marketName": "MILAN",
+      "date": "25-07-2026",
+      "result": "468 - 87 - 458",
+      "isHoliday": false
+    },
+    {
+      "marketName": "MILAN",
+      "date": "26-07-2026",
+      "result": "*** - ** - ***",
+      "isHoliday": true
+    },
+    {
+      "marketName": "MILAN",
+      "date": "27-07-2026",
+      "result": "369 - 88 - 350",
+      "isHoliday": false
+    },
+    {
+      "marketName": "MILAN",
+      "date": "28-07-2026",
+      "result": "180 - 90 - 127",
+      "isHoliday": false
+    },
+    {
+      "marketName": "MILAN",
+      "date": "29-07-2026",
+      "result": "269 - 73 - 247",
+      "isHoliday": false
+    },
+    {
+      "marketName": "MILAN",
+      "date": "30-07-2026",
+      "result": "133 - 79 - 225",
+      "isHoliday": false
+    },
+    {
+      "marketName": "MILAN",
+      "date": "31-07-2026",
+      "result": "126 - 91 - 236",
+      "isHoliday": false
+    },
+    {
+      "marketName": "MILAN",
+      "date": "01-08-2026",
+      "result": "147 - 21 - 380",
+      "isHoliday": false
     },
     {
       "marketName": "KALYAN",
