@@ -168,6 +168,7 @@
       <button class="action-btn" onclick="saveMarketData()">💾 Save Record</button>
       <button class="action-btn" onclick="copyData()">📋 Copy Data</button>
       <button class="action-btn" onclick="exportForApp()">📦 Export for App</button>
+      <button class="action-btn" onclick="resetGitHubToken()" style="background: #2a3959; color: #ff9900; border-color: #ff9900;">🔑 Reset Token</button>
       <button class="action-btn github" onclick="syncToGitHub()">🚀 Sync to GitHub (Direct)</button>
     </div>
 
@@ -196,6 +197,18 @@
         }
       }
       return token;
+    }
+
+    function resetGitHubToken() {
+      localStorage.removeItem('a23_github_token');
+      let newToken = prompt("Naya GitHub Personal Access Token yahan enter karein:");
+      if (newToken) {
+        localStorage.setItem('a23_github_token', newToken.trim());
+        let status = document.getElementById('saveStatus');
+        status.style.color = '#00ffcc';
+        status.innerText = '✓ Token successfully updated!';
+        setTimeout(() => { status.innerText = ''; }, 3000);
+      }
     }
 
     function switchMarket(market, event) {
@@ -248,7 +261,6 @@
       setTimeout(() => { status.innerText = ''; }, 3000);
     }
 
-    // Helper function to build standard app payload from all market text areas
     function buildAppPayload() {
       const marketKeys = ["sridevi", "timebazaar", "milan", "kalyan", "other"];
       let recordsArray = [];
@@ -265,7 +277,6 @@
               if (dateStr && resStr) {
                 let formattedMarketName = mKey.toUpperCase();
                 
-                // Normalization fix to ensure proper spelling and avoid duplicates
                 if (formattedMarketName === "SRIDEVI") {
                   formattedMarketName = "SHRIDEVI";
                 }
