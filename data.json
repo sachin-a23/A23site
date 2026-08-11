@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "last_updated": "8/10/2026, 7:57:22 AM",
+  "last_updated": "8/11/2026, 12:19:11 PM",
   "markets": [
     "SHRIDEVI",
     "KALYAN",
@@ -9,108 +9,6 @@
     "OTHER"
   ],
   "records": [
-    {
-      "marketName": "SHRIDEVI",
-      "date": "15-08-2025",
-      "result": "*** - ** - ***",
-      "isHoliday": true
-    },
-    {
-      "marketName": "SHRIDEVI",
-      "date": "16-08-2025",
-      "result": "180 - 92 - 138",
-      "isHoliday": false
-    },
-    {
-      "marketName": "SHRIDEVI",
-      "date": "17-08-2025",
-      "result": "448 - 60 - 668",
-      "isHoliday": false
-    },
-    {
-      "marketName": "SHRIDEVI",
-      "date": "18-08-2025",
-      "result": "169 - 65 - 168",
-      "isHoliday": false
-    },
-    {
-      "marketName": "SHRIDEVI",
-      "date": "19-08-2025",
-      "result": "240 - 63 - 580",
-      "isHoliday": false
-    },
-    {
-      "marketName": "SHRIDEVI",
-      "date": "20-08-2025",
-      "result": "569 - 07 - 179",
-      "isHoliday": false
-    },
-    {
-      "marketName": "SHRIDEVI",
-      "date": "21-08-2025",
-      "result": "890 - 75 - 456",
-      "isHoliday": false
-    },
-    {
-      "marketName": "SHRIDEVI",
-      "date": "22-08-2025",
-      "result": "136 - 04 - 167",
-      "isHoliday": false
-    },
-    {
-      "marketName": "SHRIDEVI",
-      "date": "23-08-2025",
-      "result": "358 - 60 - 280",
-      "isHoliday": false
-    },
-    {
-      "marketName": "SHRIDEVI",
-      "date": "24-08-2025",
-      "result": "270 - 94 - 590",
-      "isHoliday": false
-    },
-    {
-      "marketName": "SHRIDEVI",
-      "date": "25-08-2025",
-      "result": "779 - 30 - 235",
-      "isHoliday": false
-    },
-    {
-      "marketName": "SHRIDEVI",
-      "date": "26-08-2025",
-      "result": "570 - 20 - 244",
-      "isHoliday": false
-    },
-    {
-      "marketName": "SHRIDEVI",
-      "date": "27-08-2025",
-      "result": "480 - 26 - 466",
-      "isHoliday": false
-    },
-    {
-      "marketName": "SHRIDEVI",
-      "date": "28-08-2025",
-      "result": "279 - 86 - 457",
-      "isHoliday": false
-    },
-    {
-      "marketName": "SHRIDEVI",
-      "date": "29-08-2025",
-      "result": "147 - 20 - 569",
-      "isHoliday": false
-    },
-    {
-      "marketName": "SHRIDEVI",
-      "date": "30-08-2025",
-      "result": "148 - 33 - 256",
-      "isHoliday": false
-    },
-    {
-      "marketName": "SHRIDEVI",
-      "date": "31-08-2025",
-      "result": "157 - 37 - 124",
-      "isHoliday": false
-    },
     {
       "marketName": "SHRIDEVI",
       "date": "01-09-2025",
@@ -2167,6 +2065,12 @@
       "marketName": "SHRIDEVI",
       "date": "09-08-2026",
       "result": "249 - 52 - 156",
+      "isHoliday": false
+    },
+    {
+      "marketName": "SHRIDEVI",
+      "date": "10-08-2026",
+      "result": "178 - 61 - 399",
       "isHoliday": false
     },
     {
