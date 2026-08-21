@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "last_updated": "8/20/2026, 8:50:43 AM",
+  "last_updated": "8/21/2026, 7:52:14 AM",
   "markets": [
     "SHRIDEVI",
     "KALYAN",
@@ -2125,6 +2125,12 @@
       "marketName": "SHRIDEVI",
       "date": "19-08-2026",
       "result": "400 - 49 - 360",
+      "isHoliday": false
+    },
+    {
+      "marketName": "SHRIDEVI",
+      "date": "20-08-2026",
+      "result": "380 - 15 - 267",
       "isHoliday": false
     },
     {
@@ -4906,6 +4912,12 @@
       "isHoliday": false
     },
     {
+      "marketName": "TIME BAZAR",
+      "date": "20-08-2026",
+      "result": "126 - 90 - 127",
+      "isHoliday": false
+    },
+    {
       "marketName": "MILAN",
       "date": "08-06-2025",
       "result": "*** - ** - ***",
@@ -7474,6 +7486,12 @@
       "isHoliday": false
     },
     {
+      "marketName": "MILAN",
+      "date": "20-08-2026",
+      "result": "290 - 10 - 668",
+      "isHoliday": false
+    },
+    {
       "marketName": "KALYAN",
       "date": "21-09-2025",
       "result": "*** - ** - ***",
@@ -9289,6 +9307,12 @@
       "marketName": "KALYAN",
       "date": "19-08-2026",
       "result": "278 - 73 - 247",
+      "isHoliday": false
+    },
+    {
+      "marketName": "KALYAN",
+      "date": "20-08-2026",
+      "result": "170 - 88 - 369",
       "isHoliday": false
     }
   ]
