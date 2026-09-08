@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "last_updated": "9/8/2026, 8:14:37 AM",
+  "last_updated": "9/8/2026, 8:15:44 AM",
   "markets": [
     "SHRIDEVI",
     "KALYAN",
@@ -9613,6 +9613,18 @@
       "marketName": "KALYAN",
       "date": "05-09-2026",
       "result": "150 - 63 - 148",
+      "isHoliday": false
+    },
+    {
+      "marketName": "KALYAN",
+      "date": "06-09-2026",
+      "result": "*** - ** - ***",
+      "isHoliday": true
+    },
+    {
+      "marketName": "KALYAN",
+      "date": "07-09-2026",
+      "result": "450 - 96 - 114",
       "isHoliday": false
     }
   ]
