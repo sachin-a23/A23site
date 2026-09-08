@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "last_updated": "9/8/2026, 8:12:56 AM",
+  "last_updated": "9/8/2026, 8:14:37 AM",
   "markets": [
     "SHRIDEVI",
     "KALYAN",
@@ -7747,6 +7747,18 @@
       "marketName": "MILAN",
       "date": "05-09-2026",
       "result": "240 - 65 - 889",
+      "isHoliday": false
+    },
+    {
+      "marketName": "MILAN",
+      "date": "06-09-2026",
+      "result": "*** - ** - ***",
+      "isHoliday": true
+    },
+    {
+      "marketName": "MILAN",
+      "date": "07-09-2026",
+      "result": "139 - 32 - 660",
       "isHoliday": false
     },
     {
